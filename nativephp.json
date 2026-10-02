@@ -1,0 +1,76 @@
+{
+    "name": "momotombo/nativephp-appearance",
+    "version": "1.1.0",
+    "description": "Application-local light, dark, and system appearance preference for NativePHP Mobile.",
+    "namespace": "Appearance",
+    "keywords": [
+        "appearance",
+        "theme",
+        "dark mode",
+        "light mode",
+        "nativephp"
+    ],
+    "category": "utilities",
+    "license": "MIT",
+    "pricing": {
+        "type": "free"
+    },
+    "author": {
+        "name": "Momotombo Devs",
+        "email": "hello@momotombo.dev",
+        "url": "https://momotombo.dev"
+    },
+    "homepage": "https://github.com/donmanueldev/desperta",
+    "repository": "https://github.com/donmanueldev/desperta",
+    "funding": [],
+    "platforms": [
+        "android",
+        "ios"
+    ],
+    "screenshots": [],
+    "bridge_functions": [
+        {
+            "name": "Appearance.Set",
+            "android": "dev.momotombo.plugins.nativephp_appearance.AppearanceFunctions.Set",
+            "ios": "AppearanceFunctions.Set",
+            "description": "Set the application appearance to system, light, or dark"
+        },
+        {
+            "name": "Appearance.Get",
+            "android": "dev.momotombo.plugins.nativephp_appearance.AppearanceFunctions.Get",
+            "ios": "AppearanceFunctions.Get",
+            "description": "Get the current application appearance"
+        }
+    ],
+    "android": {
+        "init_function": "dev.momotombo.plugins.nativephp_appearance.initializeAppearance",
+        "min_version": 31,
+        "permissions": [],
+        "repositories": [],
+        "dependencies": {
+            "implementation": []
+        },
+        "activities": [],
+        "services": [],
+        "receivers": [],
+        "providers": []
+    },
+    "ios": {
+        "init_function": "initializeAppearance",
+        "min_version": "15.0",
+        "permissions": [],
+        "repositories": [],
+        "dependencies": {
+            "swift_packages": [],
+            "pods": []
+        }
+    },
+    "assets": {
+        "android": [],
+        "ios": []
+    },
+    "secrets": [],
+    "events": [],
+    "service_provider": "Momotombo\\NativephpAppearance\\AppearanceServiceProvider",
+    "hooks": {}
+}

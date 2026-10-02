@@ -1,0 +1,42 @@
+{
+    "name": "momotombo/nativephp-appearance",
+    "description": "Runtime appearance control for Despertá.",
+    "type": "nativephp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Momotombo Dev",
+            "email": "hello@momotombo.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "nativephp/mobile": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Momotombo\\NativephpAppearance\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Momotombo\\NativephpAppearance\\AppearanceServiceProvider"
+            ]
+        },
+        "nativephp": {
+            "manifest": "nativephp.json"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0"
+    },
+    "scripts": {
+        "test": "pest"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
