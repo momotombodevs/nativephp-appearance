@@ -13,8 +13,8 @@ describe('Plugin manifest', function () {
         expect($manifest['name'])->toBe('momotombo/nativephp-appearance');
         expect($manifest['namespace'])->toBe('Appearance');
         expect($manifest['version'])->toBe('1.1.0');
-        expect($manifest['homepage'])->toBe('https://github.com/donmanueldev/desperta');
-        expect($manifest['repository'])->toBe('https://github.com/donmanueldev/desperta');
+        expect($manifest['homepage'])->toBe('https://github.com/momotombodevs/nativephp-appearance');
+        expect($manifest['repository'])->toBe('https://github.com/momotombodevs/nativephp-appearance');
         expect($manifest['hooks'])->toBe([]);
         expect($manifest['android']['init_function'])->toBe('dev.momotombo.plugins.nativephp_appearance.initializeAppearance');
         expect($manifest['ios']['init_function'])->toBe('initializeAppearance');

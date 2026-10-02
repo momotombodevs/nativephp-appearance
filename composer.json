@@ -1,7 +1,20 @@
 {
     "name": "momotombo/nativephp-appearance",
-    "description": "Runtime appearance control for Despertá.",
+    "description": "Application-local light, dark, and system appearance preference for NativePHP Mobile.",
     "type": "nativephp-plugin",
+    "keywords": [
+        "nativephp",
+        "nativephp-mobile",
+        "appearance",
+        "dark-mode",
+        "light-mode",
+        "theme"
+    ],
+    "homepage": "https://github.com/momotombodevs/nativephp-appearance",
+    "support": {
+        "issues": "https://github.com/momotombodevs/nativephp-appearance/issues",
+        "source": "https://github.com/momotombodevs/nativephp-appearance"
+    },
     "license": "MIT",
     "authors": [
         {
