@@ -9,6 +9,10 @@ use RuntimeException;
 
 /**
  * Application-local appearance preference and native bridge.
+ *
+ * The preference is owned by the native platform. PHP validates requests and
+ * translates bridge responses; it does not persist a second copy of the
+ * selected mode.
  */
 class Appearance
 {
@@ -18,7 +22,10 @@ class Appearance
     public function __construct(private readonly ?\Closure $bridge = null) {}
 
     /**
-     * Persist and apply an application appearance mode.
+     * Persist and apply an application appearance mode on the native side.
+     *
+     * Outside a NativePHP runtime, validation still runs but no bridge call is
+     * attempted. This keeps command-line and unit-test usage deterministic.
      *
      * @throws InvalidArgumentException When the mode is not supported.
      */
@@ -35,7 +42,10 @@ class Appearance
     }
 
     /**
-     * Return the persisted user preference.
+     * Return the persisted user preference selected by the user.
+     *
+     * This may differ from the effective mode while the platform is changing
+     * appearance or before the native application has finished updating.
      */
     public function preference(): ?AppearanceMode
     {
@@ -59,6 +69,9 @@ class Appearance
     /**
      * Return the effective native appearance, independent of the preference.
      *
+     * NativePHP's System facade is the source of truth for what is currently
+     * rendered. The result is always `light` or `dark`.
+     *
      * @return 'light'|'dark'
      */
     public function effective(): string
@@ -72,6 +85,9 @@ class Appearance
         return $appearance;
     }
 
+    /**
+     * Normalize and validate the public mode input before crossing the bridge.
+     */
     private function mode(AppearanceMode|string $mode): AppearanceMode
     {
         $resolved = AppearanceMode::tryFromValue($mode);

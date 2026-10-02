@@ -1,6 +1,10 @@
 import Foundation
 import UIKit
 
+/// Applies an application-local style to every active window.
+///
+/// `.unspecified` lets each window inherit the system appearance. This does
+/// not modify the device-wide setting.
 private func applyAppearance(_ style: UIUserInterfaceStyle) {
     let apply = {
         UIApplication.shared.connectedScenes
@@ -16,6 +20,7 @@ private func applyAppearance(_ style: UIUserInterfaceStyle) {
     }
 }
 
+/// Converts the persisted wire-format mode into a UIKit interface style.
 private func storedAppearanceStyle() -> UIUserInterfaceStyle {
     switch UserDefaults.standard.string(forKey: "nativephp_appearance.mode") {
     case "light": .light
@@ -24,6 +29,7 @@ private func storedAppearanceStyle() -> UIUserInterfaceStyle {
     }
 }
 
+/// Registers the startup and scene-activation appearance initialization.
 func initializeAppearance() {
     applyAppearance(storedAppearanceStyle())
 
@@ -36,8 +42,10 @@ func initializeAppearance() {
     }
 }
 
+/// NativePHP bridge functions for application-local appearance control.
 enum AppearanceFunctions {
 
+    /// Validate, persist, and apply `system`, `light`, or `dark`.
     class Set: BridgeFunction {
         func execute(parameters: [String: Any]) throws -> [String: Any] {
             guard let mode = parameters["mode"] as? String,
@@ -59,6 +67,7 @@ enum AppearanceFunctions {
         }
     }
 
+    /// Return the persisted preference, defaulting to `system`.
     class Get: BridgeFunction {
         func execute(parameters: [String: Any]) throws -> [String: Any] {
             return BridgeResponse.success(data: [

@@ -8,8 +8,15 @@ import androidx.fragment.app.FragmentActivity
 import com.nativephp.mobile.bridge.BridgeFunction
 import com.nativephp.mobile.bridge.BridgeResponse
 
+/**
+ * NativePHP bridge functions for application-local appearance control.
+ *
+ * The preference is stored in app-private SharedPreferences and is applied
+ * through UiModeManager. It never changes the device-wide appearance.
+ */
 object AppearanceFunctions {
 
+    /** Apply a night mode on Android's main thread. */
     private fun applyNightMode(activity: FragmentActivity, nightMode: Int) {
         val apply = {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -24,6 +31,7 @@ object AppearanceFunctions {
         }
     }
 
+    /** Validate, persist, and apply `system`, `light`, or `dark`. */
     class Set(private val activity: FragmentActivity) : BridgeFunction {
         override fun execute(parameters: Map<String, Any>): Map<String, Any> {
             val mode = parameters["mode"] as? String
@@ -47,6 +55,7 @@ object AppearanceFunctions {
         }
     }
 
+    /** Return the persisted preference, defaulting to `system`. */
     class Get(private val context: Context) : BridgeFunction {
         override fun execute(parameters: Map<String, Any>): Map<String, Any> {
             val mode = context.getSharedPreferences("nativephp_appearance", Context.MODE_PRIVATE)
@@ -57,6 +66,9 @@ object AppearanceFunctions {
     }
 }
 
+/**
+ * Reapply the persisted preference when NativePHP initializes the app.
+ */
 fun initializeAppearance(context: Context) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
         return
