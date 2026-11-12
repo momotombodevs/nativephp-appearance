@@ -12,7 +12,7 @@ describe('Plugin manifest', function () {
         expect($manifest)->toHaveKeys(['name', 'namespace', 'bridge_functions', 'platforms']);
         expect($manifest['name'])->toBe('momotombo/nativephp-appearance');
         expect($manifest['namespace'])->toBe('Appearance');
-        expect($manifest['version'])->toBe('1.1.0');
+        expect($manifest['version'])->toBe('1.2.0');
         expect($manifest['homepage'])->toBe('https://github.com/momotombodevs/nativephp-appearance');
         expect($manifest['repository'])->toBe('https://github.com/momotombodevs/nativephp-appearance');
         expect($manifest['hooks'])->toBe([]);
