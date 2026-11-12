@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static void set(\Momotombo\NativephpAppearance\AppearanceMode|string $mode)
  * @method static string|null get()
  * @method static \Momotombo\NativephpAppearance\AppearanceMode|null preference()
- * @method static string effective()
+ * @method static 'light'|'dark' effective()
+ * @method static bool isDark()
  *
  * @see \Momotombo\NativephpAppearance\Appearance
  */
